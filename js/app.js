@@ -83,7 +83,9 @@ window.onload = gameStart();
  */
 
 function showCard(event) {
-    event.target.classList.add('show', 'open');   
+    if (cardPair.length < 2) {
+    event.target.classList.add('show', 'open'); 
+    } 
 }
 
 function matchCard() {
@@ -131,4 +133,8 @@ function gameOver() {
     if (matchedCards.length === 16) {
         console.log("Game over!")
     }
+}
+
+function timer() {
+    
 }
