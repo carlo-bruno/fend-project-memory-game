@@ -3,20 +3,30 @@
  */
 const cardList = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane-o", "paper-plane-o"]
 
-// query selectors
-const deck = document.querySelector('.deck');
+// card query selector
 const card = document.querySelectorAll('.card');
 
+// array of matched cards
 let matchedCards = document.getElementsByClassName('match');
 
-// list of opened pair cards
+// list of opened pair cards, limit to 2 then reset to []
 let cardPair = [];
+
+// stars
+const stars = document.querySelectorAll('.fa-star');
+
 
 // move counter
 const moves = document.querySelector('.moves');
 let movesNum = 0;
 
-// restart button
+// timer
+let sec = 0, min = 0;
+const timer = document.querySelector('.timer');
+let timeLapse;
+
+
+// restart button, when clicked call gameStart()
 const restart = document.querySelector('.restart').addEventListener('click', gameStart);
 
 /*
@@ -53,11 +63,17 @@ function gameStart() {
         
         card[i].classList.remove('open', 'show', 'match');
     }
-    // reset values, restart
+    // reset values
     cardPair = [];
     
     movesNum = 0;
     moves.innerHTML = movesNum;
+    
+    // restart time
+    clearInterval(timeLapse);
+    sec = 0;
+    min = 0;
+    timer.innerHTML = `${min} mins ${sec} secs`;
     
 }
 
@@ -120,21 +136,38 @@ function moveCounter() {
     movesNum++
     moves.innerHTML = movesNum;
     
+    if (movesNum == 1) {
+        gameTime();
+    }
+    
     // rating logic
     // if 12 = **, 16+ = *
     if (movesNum > 8 && movesNum <= 12) {
         console.log("2 stars");
+        stars[2].outerHTML = `<li><i class="far fa-star"></i></li>`
     } else if (movesNum >= 16) {
         console.log("1 star");
+        stars[1].outerHTML = `<li><i class="far fa-star"></i></li>`
     }
 }
+
+function gameTime() {
+    timeLapse = setInterval(function() {
+        timer.innerHTML = `${min} mins ${sec} secs`;
+        sec++;
+        if (sec == 60) {
+            min++;
+            sec = 0;
+        }
+    },1000);
+}
+
 
 function gameOver() {
-    if (matchedCards.length === 16) {
-        console.log("Game over!")
+    if (matchedCards.length == 16) {
+        clearInterval(timeLapse);
+        finalTime = timer.innerHTML
+        console.log(finalTime)
     }
 }
 
-function timer() {
-    
-}

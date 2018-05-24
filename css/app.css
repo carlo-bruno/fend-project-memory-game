@@ -88,6 +88,7 @@ h1 {
  */
 
 .score-panel {
+    display: inline-flex;
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
@@ -105,7 +106,13 @@ h1 {
     display: inline-block;
 }
 
+.score-panel .time-indicator{
+    margin-left: auto;
+    width: 45%;
+}
+
+
 .score-panel .restart {
-    float: right;
+    margin-left: 5px;
     cursor: pointer;
 }
