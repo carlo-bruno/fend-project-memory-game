@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const cardList = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane-o", "paper-plane-o"]
+const cardList = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "gem", "gem", "leaf", "leaf", "paper-plane", "paper-plane"]
 
 // card query selector
 const card = document.querySelectorAll('.card');
@@ -57,7 +57,7 @@ function shuffle(array) {
 function gameStart() {
     shuffle(cardList);
     for (let i = 0; i < cardList.length; i++) {
-        card[i].innerHTML = `<i class="fa fa-${cardList[i]}"></i>`;
+        card[i].innerHTML = `<i class="fas fa-${cardList[i]}"></i>`;
         card[i].addEventListener('click', showCard);
         card[i].addEventListener('click', matchCard);
         
@@ -75,6 +75,11 @@ function gameStart() {
     min = 0;
     timer.innerHTML = `${min} mins ${sec} secs`;
     
+    // reset stars
+    stars[2].classList.remove('far');
+    stars[2].classList.add('fas');
+    stars[1].classList.remove('far');
+    stars[1].classList.add('fas');
 }
 
 window.onload = gameStart();
@@ -142,12 +147,14 @@ function moveCounter() {
     
     // rating logic
     // if 12 = **, 16+ = *
-    if (movesNum > 8 && movesNum <= 12) {
+    if (movesNum == 12) {
         console.log("2 stars");
-        stars[2].outerHTML = `<li><i class="far fa-star"></i></li>`
-    } else if (movesNum >= 16) {
+        stars[2].classList.remove('fas');
+        stars[2].classList.add('far');
+    } else if (movesNum == 16) {
         console.log("1 star");
-        stars[1].outerHTML = `<li><i class="far fa-star"></i></li>`
+        stars[1].classList.remove('fas');
+        stars[1].classList.add('far');
     }
 }
 
