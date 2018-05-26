@@ -4,7 +4,7 @@
 const cardList = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "gem", "gem", "leaf", "leaf", "paper-plane", "paper-plane"]
 
 // card query selector
-const card = document.querySelectorAll('.card');
+const cards = document.querySelectorAll('.card');
 
 // array of matched cards
 let matchedCards = document.getElementsByClassName('match');
@@ -12,9 +12,9 @@ let matchedCards = document.getElementsByClassName('match');
 // list of opened pair cards, limit to 2 then reset to []
 let cardPair = [];
 
-// stars
-const stars = document.querySelectorAll('.fa-star');
 
+// query selector for stars
+const stars = document.querySelectorAll('.fa-star');
 
 // move counter
 const moves = document.querySelector('.moves');
@@ -28,6 +28,12 @@ let timeLapse;
 
 // restart button, when clicked call gameStart()
 const restart = document.querySelector('.restart').addEventListener('click', gameStart);
+
+
+// congratulations modal
+const modal = document.getElementById('modal')
+const close = document.querySelector('.modal-close')
+const playAgain = document.querySelector('.play-again')
 
 /*
  * Display the cards on the page
@@ -57,24 +63,24 @@ function shuffle(array) {
 function gameStart() {
     shuffle(cardList);
     for (let i = 0; i < cardList.length; i++) {
-        card[i].innerHTML = `<i class="fas fa-${cardList[i]}"></i>`;
-        card[i].addEventListener('click', showCard);
-        card[i].addEventListener('click', matchCard);
-        
-        card[i].classList.remove('open', 'show', 'match');
+        cards[i].innerHTML = `<i class="fas fa-${cardList[i]}"></i>`;
+        cards[i].addEventListener('click', showCard);
+        cards[i].addEventListener('click', matchCard);
+
+        cards[i].classList.remove('open', 'show', 'match');
     }
     // reset values
     cardPair = [];
-    
+
     movesNum = 0;
     moves.innerHTML = movesNum;
-    
+
     // restart time
     clearInterval(timeLapse);
     sec = 0;
     min = 0;
     timer.innerHTML = `${min} mins ${sec} secs`;
-    
+
     // reset stars
     stars[2].classList.remove('far');
     stars[2].classList.add('fas');
@@ -105,8 +111,8 @@ window.onload = gameStart();
 
 function showCard(event) {
     if (cardPair.length < 2) {
-    event.target.classList.add('show', 'open'); 
-    } 
+        event.target.classList.add('show', 'open');
+    }
 }
 
 function matchCard() {
@@ -140,19 +146,17 @@ function pairUnmatch() {
 function moveCounter() {
     movesNum++
     moves.innerHTML = movesNum;
-    
+
     if (movesNum == 1) {
         gameTime();
     }
-    
+
     // rating logic
     // if 12 = **, 16+ = *
     if (movesNum == 12) {
-        console.log("2 stars");
         stars[2].classList.remove('fas');
         stars[2].classList.add('far');
     } else if (movesNum == 16) {
-        console.log("1 star");
         stars[1].classList.remove('fas');
         stars[1].classList.add('far');
     }
@@ -166,15 +170,35 @@ function gameTime() {
             min++;
             sec = 0;
         }
-    },1000);
+    }, 1000);
 }
-
 
 function gameOver() {
     if (matchedCards.length == 16) {
         clearInterval(timeLapse);
-        finalTime = timer.innerHTML
-        console.log(finalTime)
+        
+        // show modal
+        modal.classList.add('show-modal');
+        
+        // store star rating 
+        starRating = document.querySelector('.stars').innerHTML;
+        
+        // display scoreboard
+        document.getElementById('rating').innerHTML = starRating;
+        document.getElementById('moves').innerHTML = movesNum;
+        document.getElementById('time').innerHTML = timer.innerHTML
+        
+        // modal buttons
+        close.addEventListener('click', function() {
+            modal.classList.remove('show-modal')
+        });
+        
+        playAgain.addEventListener('click', function() {
+            modal.classList.remove('show-modal');
+            gameStart();
+        });
+        
+    
     }
 }
 

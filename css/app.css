@@ -106,13 +106,74 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .time-indicator{
+.score-panel .time-indicator {
     margin-left: auto;
     width: 45%;
 }
 
-
 .score-panel .restart {
     margin-left: 5px;
     cursor: pointer;
+}
+
+/*
+ * Modal
+ */
+
+.modal {
+    position: fixed;
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    
+    visibility: hidden;
+}
+
+.show-modal {
+    visibility: visible;
+}
+
+.modal-in {
+    position: relative;
+    background: #fff;
+    border-radius: 5px;
+    margin: 70px auto 0;
+    padding: 20px;
+
+    text-align: center;
+
+    width: 600px;
+    max-width: 100%;
+    height: 400px;
+    max-height: 100%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+    font-size: 1.5em;
+    
+    cursor: pointer;
+}
+
+
+.play-again {
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
+    
+    width: 80%;
+    height: 50px;
+    
+    border-radius: 5px;
+}
+
+#rating li {
+    list-style: none;
+    display: inline;
 }

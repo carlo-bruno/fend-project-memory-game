@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
@@ -24,9 +25,9 @@
             </ul>
 
             <span>Moves: <span class="moves">0</span></span>
-            
+
             <span class="time-indicator">Time: <span class="timer"> 0 mins 0 secs </span></span>
-            
+
             <div class="restart">
                 <i class="fas fa-sync"></i>
             </div>
@@ -84,6 +85,21 @@
         </ul>
     </div>
 
+    <div id="modal" class="modal">
+        <div class="modal-in">
+            <h2>Congratulations!</h2>
+            <h3>You have cleared the board!</h3>
+
+            <p>Rating:<span id="rating"></span></p>
+            <p>Moves: <span id="moves"></span></p>
+            <p>Time: <span id="time"> 0 mins 0 secs</span></p>
+
+            <a class="modal-close"><i class="far fa-times-circle"></i></a>
+            <button class="play-again">Play Again? </button>
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
 </body>
+
 </html>
