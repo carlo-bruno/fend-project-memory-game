@@ -13,6 +13,8 @@
 
 ## Introduction
 
+<img src="img/ss-memory-game.png" width="600" >
+
 This is a classic memory game made up of 16 cards.
 A pair of cards are flipped at a time. If they match, they will stay open. And if they don't match, both cards will be closed.
 
@@ -25,7 +27,7 @@ After the board has been cleared, a pop-up window will appear, showing the **sta
 
 #### A Udacity Project
 
-The HTML and CSS files are provided by Udacity. It displays a static version of the Memory Game project. The JavaScript file also contains a *shuffle* function.
+The HTML and CSS files are provided by Udacity. It displays a static version of the Memory Game project. The JavaScript file also contains a *Fisher-Yates shuffle* function.
 
 For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
