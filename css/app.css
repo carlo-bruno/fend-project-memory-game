@@ -89,7 +89,7 @@ h1 {
 
 .score-panel {
     display: inline-flex;
-    text-align: left;
+    text-align: center;
     width: 345px;
     margin-bottom: 10px;
 }
@@ -147,7 +147,7 @@ h1 {
 
     width: 600px;
     max-width: 100%;
-    height: 400px;
+    height: 360px;
     max-height: 100%;
 }
 
@@ -176,4 +176,70 @@ h1 {
 #rating li {
     list-style: none;
     display: inline;
+}
+
+/*
+* Media Queries
+*/
+
+
+@media screen and (max-width : 768px){
+    h1 {
+        font-size: 25px;
+    }
+    
+    .score-panel {
+        width: 320px;
+        font-size: 14px;
+    }
+    
+    .deck {
+        width: 500px;
+        min-height: 510px;
+        padding: 24px;
+    }
+    .deck .card {
+        width: 95px;
+        height: 95px;
+    }
+    
+    .deck .card.show {
+        font-size: 25px;
+    }
+    .deck .card.match {
+        font-size: 25px;
+    }
+}
+
+
+@media screen and (max-width : 480px) {
+    h1 {
+        font-size: 20px;
+    }
+    
+    .score-panel {
+        width: 280px;
+        font-size: 12px;
+    }
+    .deck {
+        width: 320px;
+        min-height: 330px;
+        padding: 16px;
+    }
+    .deck .card {
+        width: 63px;
+        height: 63px;
+    }
+    
+    .deck .card.show {
+        font-size: 16px;
+    }
+    .deck .card.match {
+        font-size: 16px;
+    }
+    
+    .modal-in {
+        font-size: 14px;
+        height: 320px;
+    }
 }
