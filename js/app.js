@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const cardList = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "gem", "gem", "leaf", "leaf", "paper-plane", "paper-plane"]
+const cardList = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "gem", "gem", "leaf", "leaf", "paper-plane", "paper-plane"];
 
 // card query selector
 const cards = document.querySelectorAll('.card');
@@ -27,13 +27,13 @@ let timeLapse;
 
 
 // restart button, when clicked call gameStart()
-const restart = document.querySelector('.restart').addEventListener('click', gameStart);
+document.querySelector('.restart').addEventListener('click', gameStart);
 
 
 // congratulations modal
-const modal = document.getElementById('modal')
-const close = document.querySelector('.modal-close')
-const playAgain = document.querySelector('.play-again')
+const modal = document.getElementById('modal');
+const closeModal = document.querySelector('.modal-close');
+const playAgain = document.querySelector('.play-again');
 
 /*
  * Display the cards on the page
@@ -54,10 +54,8 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
-
 
 
 function gameStart() {
@@ -110,6 +108,9 @@ window.onload = gameStart();
  */
 
 function showCard(event) {
+    if (cardPair.length < 1) {
+        gameTime();
+    }
     if (cardPair.length < 2) {
         event.target.classList.add('show', 'open');
     }
@@ -144,12 +145,8 @@ function pairUnmatch() {
 }
 
 function moveCounter() {
-    movesNum++
+    movesNum++;
     moves.innerHTML = movesNum;
-
-    if (movesNum == 1) {
-        gameTime();
-    }
 
     // rating logic
     // if 12 = **, 16+ = *
@@ -163,42 +160,42 @@ function moveCounter() {
 }
 
 function gameTime() {
-    timeLapse = setInterval(function() {
-        timer.innerHTML = `${min} mins ${sec} secs`;
-        sec++;
-        if (sec == 60) {
-            min++;
-            sec = 0;
-        }
-    }, 1000);
+    if (sec === 0 && min === 0 ){
+        timeLapse = setInterval(function() {
+            sec++;
+            if (sec == 60) {
+                min++;
+                sec = 0;
+            }
+            timer.innerHTML = `${min} mins ${sec} secs`;
+        }, 1000);
+    }
 }
 
 function gameOver() {
     if (matchedCards.length == 16) {
         clearInterval(timeLapse);
-        
+
         // show modal
         modal.classList.add('show-modal');
-        
-        // store star rating 
-        starRating = document.querySelector('.stars').innerHTML;
-        
+
+        // store star rating
+        let starRating = document.querySelector('.stars').innerHTML;
+
         // display scoreboard
         document.getElementById('rating').innerHTML = starRating;
         document.getElementById('moves').innerHTML = movesNum;
-        document.getElementById('time').innerHTML = timer.innerHTML
-        
+        document.getElementById('time').innerHTML = timer.innerHTML;
+
         // modal buttons
-        close.addEventListener('click', function() {
-            modal.classList.remove('show-modal')
+        closeModal.addEventListener('click', function() {
+            modal.classList.remove('show-modal');
         });
-        
+
         playAgain.addEventListener('click', function() {
             modal.classList.remove('show-modal');
             gameStart();
         });
-        
-    
     }
 }
 

@@ -14,9 +14,9 @@
 ## Introduction
 
 This is a classic memory game made up of 16 cards.
-A pair of cards are flipped at a time. If they match, they will stay open. And if they don't match, they cards will be closed.
+A pair of cards are flipped at a time. If they match, they will stay open. And if they don't match, both cards will be closed.
 
-The timer starts *after* the first pair has been opened. Every pair of cards opened is counted as *one move*.
+The timer starts *after* the first card is clicked. Every pair of cards opened is counted as *one move*.
 
 Rating star starts at 3, and it will drop to 2 stars after 11 moves, and one star after 15.
 
@@ -25,11 +25,16 @@ After the board has been cleared, a pop-up window will appear, showing the **sta
 
 #### A Udacity Project
 
-The HTML and CSS is provided by Udacity. It displays a static version of the Memory Game project. The JavaScript contains a *shuffle* function.
+The HTML and CSS files are provided by Udacity. It displays a static version of the Memory Game project. The JavaScript file also contains a *shuffle* function.
 
 For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
 ## Built With
+
++ HTML
++ CSS
++ JavaScript ES6
+
 Toolkits 
 + [Font Awesome](https://fontawesome.com/) Icons
 
